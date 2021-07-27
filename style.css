@@ -1,0 +1,59 @@
+html {
+  font-size: 20px;
+}
+
+body {
+  margin-top: 1em;
+  min-width: 320px;
+  background-color: #fff;
+  color: #1d1d1f;
+}
+
+ul {
+  background: lightgrey;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+li {
+  margin-left: 20px;
+}
+
+h1, h2 {
+  font-family: "Bodoni 72";
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+address {
+  font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
+  display: contents;
+  font-style: inherit;
+  font-weight: 200;
+}
+address p, a{
+  margin: 0.1em;
+}
+
+.container-centered {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#map {
+  height: 600px;
+}

@@ -1,7 +1,74 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+<html lang="tr">
+	<head>
+		<meta charset="UTF-8" content="UTF-8" />
+		<title>Lavanta Eczanesi</title>
+
+
+
+		<meta name="author" content="Ali Yasin Akalın" />
+		<meta name="description" content="Sancaktepe'deki Lavanta Eczanesi'nin websitesi.
+		Burada iletişim bilgilerimizi bulabilirsiniz." />
+
+		<!-- The Open Protocol Metadata -->
+		<!-- More info: https://ogp.me/ -->
+		<meta property="og:title" content="Lavanta Eczanesi" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="./assets/cards/Image_OpenGraph.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:url" content="http://lavantaeczanesi.com" />
+		<!-- End of Open Protocol Metadata-->
+
+		<!-- Twitter Cards Metadata
+		More info: https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary -->
+		<meta name="twitter:card" content="summary" />
+		<!-- Optional <meta name="twitter:site" content="@TWITTER_HANDLE" /> -->
+		<meta name="twitter:title" content="Lavanta Eczanesi" />
+		<!-- Optional <meta name="twitter:description" content="AÇIKLAMA" /> -->
+		<meta name="twitter:image" content="./assets/cards/Image_TwitterCard_SummaryCard.png" />
+		<!-- End of Open Twitter Cards Metadata -->
+
+		<!-- Favicons -->
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/favicons/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicons/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicons/favicon-16x16.png">
+		<link rel="manifest" href="./assets/favicons/site.webmanifest">
+		<link rel="mask-icon" href="./assets/favicons/safari-pinned-tab.svg" color="#796177">
+		<link rel="shortcut icon" href="./assets/favicons/favicon.ico">
+		<meta name="apple-mobile-web-app-title" content="Lavanta Eczanesi">
+		<meta name="application-name" content="Lavanta Eczanesi">
+		<meta name="msapplication-TileColor" content="#f8f8f8">
+		<meta name="msapplication-TileImage" content="./assets/favicons/mstile-144x144.png">
+		<meta name="msapplication-config" content="./assets/favicons/browserconfig.xml">
+		<meta name="theme-color" content="#ffffff">
+		<!-- End of Favicons -->
+
+		<!-- CSS files-->
+		<link rel="stylesheet" href="style.css">
+		<!-- End of CSS files -->
+
+		<!-- Script files-->
+		<!-- <script type="text/javascript" src="script.js" defer></script> -->
+        <script src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
+        <script type="text/javascript" src="maps.js"></script>
+		<!-- End of script files-->
+	</head>
+	<body>
+	<div class="container-centered" id="business-card">
+		<!-- <div><img src="./Logo_frame0.svg" width="200pt" height="200pt"></div> -->
+		<div><img src="./assets/logos/Logo_frame0.png" width="200pt" height="200pt"></div>
+		<h1>Lavanta Eczanesi</h1>
+		<h2>Ecz. Rabia Akalın</h2>
+		<address>
+			<a href="tel:+902167847417">+90 (216) 784 74 17</a>
+			<a href="mailto:rabia@lavantaeczanesi.com">rabia@lavantaeczanesi.com</a>
+			<p>Atayolu Cd. No: 108/1G</p>
+			<p>Sancaktepe/İstanbul</p>
+		</address>
+	</div>
+	<div>
+		<div id="map"></div>
+	</div>
+	</body>
 </html>
