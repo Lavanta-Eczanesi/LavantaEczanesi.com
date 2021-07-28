@@ -4,7 +4,6 @@ html {
 
 body {
   margin-top: 1em;
-  min-width: 320px;
   background-color: #fff;
   color: #1d1d1f;
 }
@@ -25,7 +24,7 @@ h1, h2 {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   margin-top: 0.4rem;
   margin-bottom: 0.4rem;
 }
