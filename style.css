@@ -98,9 +98,17 @@ address .address-phone-buttons ul li {
   justify-content: center;
 }
 
-#map {
-  margin: 0 auto;
+.container-map-full-width {
   display: flex;
-  flex-flow: column;
-  align-items: center;
+  flex-flow: 1;
+  flex-direction: column;
+  flex-shrink: unset;
+}
+
+.container-map-full-width iframe {
+  border:0;
+  width: 100%;
+}
+
+#map {
 }
