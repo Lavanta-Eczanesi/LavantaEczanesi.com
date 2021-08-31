@@ -93,6 +93,18 @@ address .address-phone-buttons ul li {
   background-image: url("./assets/logos/wa_logo.svg");
 }
 
+.screenreader-only {
+  /* Class seen on https://stackoverflow.com/a/39919878 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
 .container-centered {
   margin: 0 auto;
   display: flex;
