@@ -107,7 +107,9 @@ address .address-phone-buttons ul li {
 
 .container-centered {
   margin-top: 50px;
-  margin: 0 auto;
+  margin-botton: 0px;
+  margin-right:auto;
+  margin-left:auto;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -141,6 +143,7 @@ address .address-phone-buttons ul li {
   border-radius: 25px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-weight: bold;
 }
 .nobetci > img {
   height: 30px;
