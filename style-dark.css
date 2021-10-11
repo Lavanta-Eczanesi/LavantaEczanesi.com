@@ -69,4 +69,8 @@
     background-image: none;
     border-color: currentcolor;
   }
+  .nobetci {
+    background-color: rgb(43, 45, 45);
+    color: rgb(231, 226, 218);
+  }
 }
