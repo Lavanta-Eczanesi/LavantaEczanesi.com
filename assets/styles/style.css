@@ -86,11 +86,11 @@ address .address-phone-buttons ul li {
 }
 
 #phone {
-  background-image: url("./assets/logos/phone_icon.png");
+  background-image: url("../images/logos/phone_icon.png");
 }
 
 #whatsapp {
-  background-image: url("./assets/logos/wa_logo.svg");
+  background-image: url("../images/logos/wa_logo.svg");
 }
 
 .screenreader-only {
