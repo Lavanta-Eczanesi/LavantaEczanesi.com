@@ -3,10 +3,7 @@ html {
 }
 
 body {
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
+  margin: 0px;
   background-color: #fff;
   color: #1d1d1f;
 }
@@ -106,10 +103,8 @@ address .address-phone-buttons ul li {
 }
 
 .container-centered {
-  margin-top: 50px;
-  margin-botton: 0px;
-  margin-right:auto;
-  margin-left:auto;
+  
+  margin: 0px auto;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -132,19 +127,22 @@ address .address-phone-buttons ul li {
 }
 
 .nobetci {
+  display: none;
   position: fixed;
   top: 5px;
   left: 50%;
   transform: translate(-50%);
-  font-size: 15px;
-  line-height: 30px;
   background-color: #fff;
-  padding: 5px 10px;
+  padding: 10px 15px;
   border-radius: 25px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nobetci p{
+  text-align:center;
+  margin: 0.25em;
+  font-size: 15px;
+  line-height: 1.5em;
   font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
   font-weight: bold;
-}
-.nobetci > img {
-  height: 30px;
 }

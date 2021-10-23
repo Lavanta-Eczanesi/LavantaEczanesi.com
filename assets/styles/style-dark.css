@@ -72,5 +72,22 @@
   .nobetci {
     background-color: rgb(43, 45, 45);
     color: rgb(231, 226, 218);
+
+    /* Padding */
+    /* Light Theme -> padding: 10px 15px; */
+    padding: 5px 10px; /* Padding is smaller than light theme's to accommodate border */
+
+    /* Shadow */
+    /* Light theme -> Shadow extends to bottom, black color,
+    creates an elevated look.
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); */
+    /* Dark theme -> All around white glow to match dotted border */
+    box-shadow: 0 0px 15px rgba(255, 255, 255, 0.4);
+
+    /* Border */
+    /* Light Theme -> No border */
+    border-style: dotted;
+    border-width: thick;
+    border-color: antiquewhite;
   }
 }
