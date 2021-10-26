@@ -41,10 +41,13 @@ address {
   font-style: inherit;
   font-weight: 200;
 }
-address p, a{
+address a{
   margin: 0.1em;
 }
 
+address p{
+  margin: 0.12em;
+}
 address .address-phone {
   display: flex;
   flex-direction: column;
