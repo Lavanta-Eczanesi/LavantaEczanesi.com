@@ -90,4 +90,15 @@
     border-width: thick;
     border-color: antiquewhite;
   }
+
+  #phone img{
+    /* Make phone icon size bigger to match whatsapp icon size. */
+    /* Reasoning for this: Whatsapp's icon's white border becomes visible at dark
+    makes it seem bigger than phone icon.*/
+    /*Light theme -> 
+    height: 90%;
+    width: 90%;*/
+    height: 100%;
+    width: 100%;
+  }
 }

@@ -90,7 +90,8 @@ address .address-phone-buttons li {
 
 #whatsapp img{
   /* Whatsapp icon is made bigger because of
-  its shape. This way whatsapp icon and phone icon
+  its shape and thick white borders.
+  This way whatsapp icon and phone icon
   seem the same size.*/
   height: 100%;
   width: 100%;
