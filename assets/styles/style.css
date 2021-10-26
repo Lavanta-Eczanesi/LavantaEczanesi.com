@@ -55,39 +55,50 @@ address .address-phone-buttons {
   display: flex;
   flex-direction: row;
   margin: 0.4em;
-}
-address .address-phone-buttons ul {
   background: none;
   margin-block-start: 0;
   margin-block-end: 0;
   margin-inline-start: 0;
   margin-inline-end: 0;
-  padding: 0;
-  padding-inline-start: 0;
   list-style-type: none;
-  border: none;
 }
-address .address-phone-buttons ul li {
-  display: table-cell;
+
+address .address-phone-buttons li {
   margin-left: 0;
-  padding-inline-start: 25px;
-  padding-inline-end: 25px;
+  padding-inline-start: 0.8em;
+  padding-inline-end: 0.8em;
 }
 
 .call-button{
+  display: flex; /*block can also be used but centering isn't working with that*/
+  justify-content: center;
+  align-items: center;
+
   -webkit-font-smoothing: antialiased;
-  background-repeat: no-repeat;
-  background-size: auto 1.5em;
-  height: 1.5em;
-  width: 1.5em;
+  height: 1.6em;
+  width: 1.6em;
+  /* Padding to extend area touchable */
+  padding: 0.4em;
 }
 
-#phone {
-  background-image: url("../images/logos/phone_icon.png");
+.call-button img {
+  /* Standart measurements for icons */
+  /* 1.6em x 0.9 */
+  height: 90%;
+  width: 90%;
 }
 
-#whatsapp {
-  background-image: url("../images/logos/wa_logo.svg");
+#whatsapp img{
+  /* Whatsapp icon is made bigger because of
+  its shape. This way whatsapp icon and phone icon
+  seem the same size.*/
+  height: 100%;
+  width: 100%;
+}
+
+#phone img {
+  /* Radius is given to phone icon. */
+  border-radius: 1em;
 }
 
 .screenreader-only {
