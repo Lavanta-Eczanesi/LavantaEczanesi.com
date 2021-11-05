@@ -92,11 +92,11 @@ function detectNightShift() {
   var nl = readJsonFile();
   
   // Create night-shift start time as datetime object.
-  var d_1 = new Date(nl[0].start);
+  var d_1 = new Date(nl[nl.length-1].start);
   console.log("Nobet basla: (d_1)", d_1);
 
   // Create night-shift end time as datetime object.
-  var d_2 = new Date(nl[0].end);
+  var d_2 = new Date(nl[nl.length-1].end);
   console.log("Nobet bitis: (d_2)", d_2);
   
   // Create datetime object for current time.
