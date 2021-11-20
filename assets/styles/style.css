@@ -34,7 +34,11 @@ h2 {
   margin-top: 0.4rem;
   margin-bottom: 0.4rem;
 }
-
+h3 {
+  font-size: 1.6rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
 address {
   font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
   display: contents;
@@ -124,6 +128,21 @@ address .address-phone-buttons li {
   flex-flow: column;
   align-items: center;
   justify-content: center;
+}
+.container-left-aligned {
+  max-width: 32em;
+  margin: 2em auto;
+  display: block;
+  /* flex-flow: column; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+.container-left-aligned p{
+  font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
+}
+.container-left-aligned p span{
+  /* font-family: "Bodoni 72", "Prata", serif; */
+  font-weight: 600;
 }
 
 .container-map-full-width {
