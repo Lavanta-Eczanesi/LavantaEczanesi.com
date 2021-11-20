@@ -130,7 +130,7 @@ address .address-phone-buttons li {
   justify-content: center;
 }
 .container-left-aligned {
-  max-width: 32em;
+  max-width: 36em;
   margin: 2em auto;
   display: block;
   /* flex-flow: column; */
