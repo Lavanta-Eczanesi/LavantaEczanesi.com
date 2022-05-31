@@ -15,12 +15,14 @@ function showInfoBox(smallScreen=false) {
   // Shows the night-shift banner
   div_nobetci.style.display = "block";
   if (smallScreen === true) {
-    div_nobetci.style.top = 'unset';
-    div_nobetci.style.marginTop = '5px';
+    // Don't use .replace() since there might not be the class to replace
+    div_nobetci.classList.add('hanging-low');
+    div_nobetci.classList.remove('hanging-high');
   }
   else {
-    div_nobetci.style.top = '5px';
-    div_nobetci.style.marginTop = '0px';
+    // Don't use .replace() since there might not be the class to replace
+    div_nobetci.classList.add('hanging-high');
+    div_nobetci.classList.remove('hanging-low');
   }
 }
 
@@ -177,3 +179,22 @@ mql.onchange = (e) => {
     redrawBanner()
   }
 }
+
+// Make shift banner (info box) sticky to top border when scrolled down
+// This operation only necessary when info box is hanging low
+// It would hang low only if window width is small (e.g. mobile device)
+function updateOnScroll(){
+  if (mql.matches && isShiftContinue()){
+    let nobetci_rect = div_nobetci.getBoundingClientRect();
+    if (window.pageYOffset > (nobetci_rect.top-5)) {
+      console.log("scroll y", window.pageYOffset);
+      console.log("nobetci_y", nobetci_rect.top);
+      div_nobetci.classList.add("sticky");
+    } 
+    else {
+      div_nobetci.classList.remove("sticky");
+    }
+  }
+}
+document.addEventListener('scroll', updateOnScroll);
+updateOnScroll();
