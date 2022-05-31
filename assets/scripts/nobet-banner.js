@@ -10,17 +10,29 @@ function hideInfoBox() {
   div_nobetci.style.display = "none";
 }
 
-function showInfoBox() {
+function showInfoBox(smallScreen=false) {
   // Runs if current date and time is night-shift time.
   // Shows the night-shift banner
   div_nobetci.style.display = "block";
+  if (smallScreen === true) {
+    div_nobetci.style.top = 'unset';
+    div_nobetci.style.marginTop = '5px';
+  }
+  else {
+    div_nobetci.style.top = '5px';
+    div_nobetci.style.marginTop = '0px';
+  }
 }
 
-function pushBodyDown() {
+function pushBodyDown(smallScreen=false) {
   // Runs if current date and time is night-shift time.
   // Pushes everything except the night-shift banner down to make space.
-  // div_main.style.marginTop = "4.2em"; Before navbar
-  div_main.style.marginTop = "1.2em";
+  
+  if (smallScreen)
+    div_main.style.marginTop = "3.5em";
+  else 
+    // div_main.style.marginTop = "4.2em"; Before navbar  
+    div_main.style.marginTop = "1.2em";
 }
 
 function pullBodyUp() {
@@ -85,6 +97,9 @@ var dates = {
 }
 */
 
+
+let now;
+let ns_end;
 function detectNightShift() {
   // Detects if now is night-shift time.
   // Returns either a boolean value or null.
@@ -93,33 +108,26 @@ function detectNightShift() {
   var nl = readJsonFile();
   
   let nstatus;
+  let msg;
   for (let n_iter=1; n_iter>0 && n_iter<3;){
     // Create night-shift start time as datetime object.
     var d_1 = new Date(nl[nl.length-n_iter].start);
-    console.log("Nobet basla: (d_1)", d_1);
+    // console.log("Nobet basla: (d_1)", d_1);
 
     // Create night-shift end time as datetime object.
     var d_2 = new Date(nl[nl.length-n_iter].end);
-    console.log("Nobet bitis: (d_2)", d_2);
+    // console.log("Nobet bitis: (d_2)", d_2);
 
     // Create datetime object for current time.
     var g = new Date();
-    console.log("Now:           (g)", g);
-
-    //console.log(dates.inRange(g, d_1, d_2));
-    //console.log("  g: ", g.getTime());
-    //console.log("d_1: ", d_1.getTime());
-    //console.log("d_2: ", d_2.getTime());
-
+    // console.log("Now:           (g)", g);
     
-    let msg;
     if      (g>d_2) {msg="Nobet gunu gecti";  nstatus=false; break;}
-    else if (g>d_1) {msg="Nobet ani";         nstatus=true; break;}
-    else if (d_1>g) {msg="Nobete daha var";   nstatus=false; n_iter=n_iter+1;}
+    else if (g>d_1) {msg="Nobet ani";         nstatus=true; now=g; ns_end=d_2; break;}
+    else if (d_1>g) {msg="Nobete daha var";   nstatus=false; console.log(msg); n_iter=n_iter+1;}
     else            {msg="Tarihler sorunlu!"; nstatus=null; break;}
-    console.log(msg);
   }
-
+  console.log(msg);
   return nstatus;
 }
 
@@ -135,8 +143,37 @@ window.addEventListener("load",
   e => {
     hideInfoBox();
     if (detectNightShift()){
-      showInfoBox();
-      pushBodyDown();
+      showInfoBox(smallScreen=mql.matches);
+      pushBodyDown(smallScreen=mql.matches);
     }
   }
 );
+
+// Detect if shift is continuing
+// Variables checked are not null if and only if it is shift hours when the page is loaded
+// This function is an helper function to redrawBanner()
+// This is to be used to redraw the shift banner upon screen width or orientation changes
+let isShiftContinue = () => {return (now < ns_end);}
+
+// Define night shift banner operations in an arrow function
+let redrawBanner = () => {
+    hideInfoBox();
+    if (isShiftContinue()){
+      showInfoBox(smallScreen=mql.matches);
+      pushBodyDown(smallScreen=mql.matches);
+    }
+}
+
+// Upon change in screen-width or page-width below or above threshold;
+//   redraw night-shift banner
+//     redraw function checks if the shift is continuing
+mql.onchange = (e) => {
+  if (e.matches) {
+    // console.log("Small screen")
+    redrawBanner()
+  }
+  else {
+    // console.log("Wide screen")
+    redrawBanner()
+  }
+}
