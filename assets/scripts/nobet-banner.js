@@ -187,8 +187,8 @@ function updateOnScroll(){
   if (mql.matches && isShiftContinue()){
     let nobetci_rect = div_nobetci.getBoundingClientRect();
     if (window.pageYOffset > (nobetci_rect.top-5)) {
-      console.log("scroll y", window.pageYOffset);
-      console.log("nobetci_y", nobetci_rect.top);
+      // console.log("scroll y", window.pageYOffset);
+      // console.log("nobetci_y", nobetci_rect.top);
       div_nobetci.classList.add("sticky");
     } 
     else {
