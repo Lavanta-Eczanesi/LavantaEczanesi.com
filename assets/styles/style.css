@@ -180,3 +180,55 @@ address .address-phone-buttons li {
   font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
   font-weight: bold;
 }
+
+/* Navigation bar */
+nav{
+  display: flex;
+  overflow: hidden;
+  margin-right: 5%;
+  margin-top: 1px;
+  margin-left: 5%;
+}
+
+/* Style the links inside the navigation bar */ 
+nav a { 
+  padding: 0.4em 0em 0em 0em;  
+}
+
+nav a button { 
+  border-style:none;
+  border-radius: 6pt; 
+  padding: 0.4em;
+  margin-right: 0.8em;
+  background-color: #eee;
+  
+  /* TEXT IN BUTTON */
+  color: #1D1D1F; /* Text color */ 
+  font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-size: 1em;
+  font-weight: 200;
+  text-decoration: none;
+} 
+
+/* Change the color of links on hover */ 
+nav a button:hover {
+  /* Apply all changes here to 'nav a.in-use button' */
+  background-color: #ddd;
+  color: #1D1D1F;
+  text-decoration: underline;
+}
+
+/* class "in-use" if link in navbar clicked/tapped and is open */
+nav a.in-use {
+  pointer-events: none;
+  cursor: default;
+}
+nav a.in-use button {
+  /* Contains same style as button:hover */
+  background-color: #ddd;
+  color: #1D1D1F;
+}
+
+hr{
+  margin-bottom: 0;
+}

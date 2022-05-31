@@ -19,7 +19,8 @@ function showInfoBox() {
 function pushBodyDown() {
   // Runs if current date and time is night-shift time.
   // Pushes everything except the night-shift banner down to make space.
-  div_main.style.marginTop = "4.2em";
+  // div_main.style.marginTop = "4.2em"; Before navbar
+  div_main.style.marginTop = "1.2em";
 }
 
 function pullBodyUp() {
