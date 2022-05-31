@@ -92,30 +92,34 @@ function detectNightShift() {
   // Read file containing night-shift datetime values.
   var nl = readJsonFile();
   
-  // Create night-shift start time as datetime object.
-  var d_1 = new Date(nl[nl.length-1].start);
-  console.log("Nobet basla: (d_1)", d_1);
-
-  // Create night-shift end time as datetime object.
-  var d_2 = new Date(nl[nl.length-1].end);
-  console.log("Nobet bitis: (d_2)", d_2);
-  
-  // Create datetime object for current time.
-  var g = new Date();
-  console.log("Now:           (g)", g);
-  
-  //console.log(dates.inRange(g, d_1, d_2));
-  //console.log("  g: ", g.getTime());
-  //console.log("d_1: ", d_1.getTime());
-  //console.log("d_2: ", d_2.getTime());
-
   let nstatus;
-  let msg;
-  if      (g>d_2) {msg="Nobet gunu gecti";  nstatus=false;}
-  else if (g>d_1) {msg="Nobet ani";         nstatus=true; }
-  else if (d_1>g) {msg="Nobete daha var";   nstatus=false;}
-  else            {msg="Tarihler sorunlu!"; nstatus=null; }
-  console.log(msg);
+  for (let n_iter=1; n_iter>0 && n_iter<3;){
+    // Create night-shift start time as datetime object.
+    var d_1 = new Date(nl[nl.length-n_iter].start);
+    console.log("Nobet basla: (d_1)", d_1);
+
+    // Create night-shift end time as datetime object.
+    var d_2 = new Date(nl[nl.length-n_iter].end);
+    console.log("Nobet bitis: (d_2)", d_2);
+
+    // Create datetime object for current time.
+    var g = new Date();
+    console.log("Now:           (g)", g);
+
+    //console.log(dates.inRange(g, d_1, d_2));
+    //console.log("  g: ", g.getTime());
+    //console.log("d_1: ", d_1.getTime());
+    //console.log("d_2: ", d_2.getTime());
+
+    
+    let msg;
+    if      (g>d_2) {msg="Nobet gunu gecti";  nstatus=false; break;}
+    else if (g>d_1) {msg="Nobet ani";         nstatus=true; break;}
+    else if (d_1>g) {msg="Nobete daha var";   nstatus=false; n_iter=n_iter+1;}
+    else            {msg="Tarihler sorunlu!"; nstatus=null; break;}
+    console.log(msg);
+  }
+
   return nstatus;
 }
 
