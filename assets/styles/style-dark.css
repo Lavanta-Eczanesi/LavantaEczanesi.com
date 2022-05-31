@@ -4,10 +4,10 @@
   html {
     background-color: #2b2d2d !important;
   }
-  html, body, input, textarea, select, button {
+  html, body, input, textarea, select, button, nav a button {
     background-color: #2b2d2d;
   }
-  html, body, input, textarea, select, button {
+  html, body, input, textarea, select, button, nav a button {
     border-color: #857d6f;
     color: #faf6f0;
   }
@@ -101,4 +101,55 @@
     height: 100%;
     width: 100%;
   }
+
+  /* Navigation links */
+  nav a button { 
+    /* Button Fill (background) color */
+    /* Light Theme -> background-color: #eee; */
+    /* Dark Theme -> Managed at line 7 */
+  
+    /* Text Color */
+    /* Light Theme -> color: #1D1D1F; */
+    /* Dark Theme -> Managed at line 10 */
+  } 
+
+  /* Change the color of links on hover */
+  nav a button:hover {
+    /* Apply all changes here to 'nav a.in-use button' */
+    /* Light theme -> background-color: #ddd; */
+    /* Dark theme -> No fill, use border (see below) */
+    background-color: unset;
+
+    /* Border for dark theme */
+    /* Light theme has not border, but fill */
+    /* box-shadow -> [OPTIONAL] inset switch, pos. x, pos. y, blur, spread, [OPTIONAL] color */
+    box-shadow: inset 0 0 0 0.1em #faf6f0;
+
+    /* Text */
+    /* Light theme -> color: #1D1D1F; */
+    color: #faf6f0;
+  }
+
+  nav a.in-use button {
+    /* Contains same style as button:hover */
+    /* Light theme -> background-color: #ddd; */
+     /* Dark theme -> No fill, use border (see below) */
+    background-color: unset;
+
+    /* Border for dark theme */
+    /* Light theme has not border, but fill */
+    /* box-shadow -> [OPTIONAL] inset switch, pos. x, pos. y, blur, spread, [OPTIONAL] color */
+    box-shadow: inset 0 0 0 0.1em #faf6f0;
+
+    /* Text */
+    /* Light theme -> color: #1D1D1F; */
+    color: #faf6f0;
+  }
+
+  nav a button:focus-within, nav a.in-use button:focus-within{
+    text-decoration: underline;
+  }
+
+/* END OF @media (prefers-color-scheme: dark) */
+/* DONT PUT RULES OUT OF THIS SCOPE */
 }
