@@ -1,3 +1,22 @@
+///////////////////
+// FUNCTIONS
+// Wrapper function to run other functions from various scripts in a sandbox
+function wrapper(fn){
+  try {
+    fn();
+  } catch (e) {
+    if (e.name == "ReferenceError") {
+      console.warn("Expected error catched!");
+      console.warn(e);
+    } else {
+      console.error(e);
+    }
+  }
+}
+
+
+///////////////////
+// EVENT LISTENERS
 /* Listens the change in system's, device's or web browser's color scheme (dark or light) 
    Invoke the necessary function to match Google Maps' iframe's colors */
 // References
@@ -9,13 +28,13 @@ const lightModeMediaQuery = window.matchMedia("(prefers-color-scheme: light)");
 darkModeMediaQuery.addEventListener("change", (e) => {
   const isDarkModeOn = e.matches;
   console.log(`Dark mode is ${isDarkModeOn ? '🌒 switched on' : '☀️ switched off'}.`);
-  darkenMap();
-  darkenUi();
+  wrapper(darkenMap);
+  wrapper(darkenUi);
 });
 
 lightModeMediaQuery.addEventListener("change", e => {
   const isLightModeOn = e.matches;
   console.log(`Light mode is ${isLightModeOn ? '☀️ switched on' : '🌒 switched off'}.`);
-  lightenMap();
-  lightenUi();
+  wrapper(lightenMap);
+  wrapper(lightenUi);
 });
