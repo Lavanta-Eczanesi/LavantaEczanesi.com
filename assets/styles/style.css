@@ -1,3 +1,15 @@
+:root {
+  /* Upon updating colors, update at these locations too:
+    - style-dark.css
+    - index.html => <head> => <meta>.name="theme-color"
+    - assets/scripts/darken-ui-colors.js
+  */
+  --color-lavanta: rgb(121, 97, 119);
+  --color-mavi: rgb(0, 157, 220);
+  --color-turuncu: rgb(242, 100, 48);
+  --color-yesil: rgb(0, 155, 114);
+}
+
 html {
   font-size: 20px;
 }
