@@ -1,6 +1,18 @@
 @media (prefers-color-scheme: dark){
   /* Contains dark mode changes */
   /* Changes created using Dark Reader. https://darkreader.org */
+  :root {
+    /* Following colors are -37.5% brightness of original colors
+    +100% is white. 0% is original colors. -100% is black.
+    
+    Upon updating colors, update at these locations too:
+    - assets/scripts/darken-ui-colors.js */
+    --color-dark-lavanta: #4C3D4B;
+    --color-dark-mavi: #006289;
+    --color-dark-turuncu: #AB360B;
+    --color-dark-yesil: #006046;
+  }
+  
   html {
     background-color: #2b2d2d !important;
   }
