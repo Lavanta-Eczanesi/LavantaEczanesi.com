@@ -28,13 +28,17 @@ const lightModeMediaQuery = window.matchMedia("(prefers-color-scheme: light)");
 darkModeMediaQuery.addEventListener("change", (e) => {
   const isDarkModeOn = e.matches;
   console.log(`Dark mode is ${isDarkModeOn ? '🌒 switched on' : '☀️ switched off'}.`);
-  wrapper(darkenMap);
-  wrapper(darkenUi);
+  if (isDarkModeOn){
+    wrapper(darkenMap);
+    wrapper(darkenUi);
+  }
 });
 
 lightModeMediaQuery.addEventListener("change", e => {
   const isLightModeOn = e.matches;
   console.log(`Light mode is ${isLightModeOn ? '☀️ switched on' : '🌒 switched off'}.`);
-  wrapper(lightenMap);
-  wrapper(lightenUi);
+  if (isLightModeOn){
+    wrapper(lightenMap);
+    wrapper(lightenUi);
+  }
 });
