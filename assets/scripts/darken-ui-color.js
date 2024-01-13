@@ -35,6 +35,8 @@ function paintUi() {
 // References
 // https://stackoverflow.com/a/59621903/4258598
 // https://web.dev/prefers-color-scheme/
+
+// DARK-LIGHT THEME RELATED EVENT LISTENERS ARE MOVED TO 'dark-light-change-events.js'
 // window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", 
 //   e => e.matches && darkenUi() 
 // ); 
