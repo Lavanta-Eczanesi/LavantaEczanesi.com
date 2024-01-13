@@ -12,11 +12,11 @@ const color_dark_lavanta = "#4C3D4B";
 // FUNCTIONS
 // Define basic color changing functions
 function lightenUi(){
-    theme_color.setAttribute('content', color_lavanta)
+    theme_color.setAttribute('content', color_lavanta);
 }
 
 function darkenUi(){
-    theme_color.setAttribute('content', color_dark_lavanta)
+    theme_color.setAttribute('content', color_dark_lavanta);
 }
 
 function paintUi() {
