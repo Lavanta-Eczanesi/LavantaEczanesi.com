@@ -9,6 +9,14 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
+		<!-- User interface (toolbar) coloring -->
+		<!-- Currently works on Safari, Chrome on Android -->
+		<!-- More info 1: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color -->
+		<!-- More info 2: https://css-tricks.com/meta-theme-color-and-trickery/ -->
+		<!-- Color is the same as --color-lavanta, defined in style.css file.
+			It is 1 of 4 main colors of Lavanta Eczanesi. -->
+		<meta name="theme-color" content="rgb(121, 97, 119)" />
+
 		<!-- The Open Protocol Metadata -->
 		<!-- More info: https://ogp.me/ -->
 		<meta property="og:title" content="Lavanta Eczanesi" />
@@ -55,10 +63,14 @@
 		<!-- End of CSS files -->
 
 		<!-- Script files-->
+		<!-- 'defer' stops flashing of DOM elements.
+			 More info: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer-->
 		<script type="text/javascript" src="./assets/scripts/map-dark-light-switch.js" defer></script>
 		<script type="text/javascript" src="./assets/scripts/detect-mobile.js" defer></script>
 		<script type="text/javascript" src="./assets/scripts/nobet-listesi.js" defer></script>
 		<script type="text/javascript" src="./assets/scripts/nobet-banner.js" defer></script>
+		<script type="text/javascript" src="./assets/scripts/ui-dark-light-switch.js"></script>
+		<script type="text/javascript" src="./assets/scripts/dark-light-change-events.js"></script>
 		<!-- End of script files-->
 	</head>
     <body>

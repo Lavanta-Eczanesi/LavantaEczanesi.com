@@ -12,11 +12,11 @@ const color_dark_lavanta = "#4C3D4B";
 // FUNCTIONS
 // Define basic color changing functions
 function lightenUi(){
-    theme_color.setAttribute('content', color_lavanta)
+    theme_color.setAttribute('content', color_lavanta);
 }
 
 function darkenUi(){
-    theme_color.setAttribute('content', color_dark_lavanta)
+    theme_color.setAttribute('content', color_dark_lavanta);
 }
 
 function paintUi() {
@@ -35,6 +35,8 @@ function paintUi() {
 // References
 // https://stackoverflow.com/a/59621903/4258598
 // https://web.dev/prefers-color-scheme/
+
+// DARK-LIGHT THEME RELATED EVENT LISTENERS ARE MOVED TO 'dark-light-change-events.js'
 // window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", 
 //   e => e.matches && darkenUi() 
 // ); 
