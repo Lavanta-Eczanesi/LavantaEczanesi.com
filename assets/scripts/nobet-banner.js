@@ -144,6 +144,7 @@ var dates = {
  * Returns either a boolean value or null.
  */
 function detectNightShift() {
+  // FOLLOWING ALGORITHM ASSUMES `nl` (nobet list) IS A SORTED ARRAY
 
   // Read file containing night-shift datetime values.
   var nl = readJsonFile();
