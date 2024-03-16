@@ -1,18 +1,45 @@
+///////////////////
+// VARIABLES
+/**
+ * let mql
+ * is defined in `detect-mobile.js`
+ */
+
+/**
+ * Current time
+ * Date() object
+ */
+// SOON TO BE DEPRECATED
+let now;
+
+/**
+ * End of currently-in-night-shift's date-time
+ * Date() object
+ */
+let ns_end;
+
 // Select Nobetci Eczane info box
 var div_nobetci = document.getElementById("nobetci");
 
 // Select the main body for top margin
 var div_main = document.getElementById("business-card");
 
+///////////////////
+// FUNCTIONS
+/**
+ * Runs automatically when window is first loaded.
+ * Hides the night-shift banner
+ */
 function hideInfoBox() {
-  // Runs automatically when window is first loaded.
-  // Hides the night-shift banner
   div_nobetci.style.display = "none";
 }
 
+
+/**
+ * Runs if current date and time is night-shift time.
+ * Shows the night-shift banner
+ */
 function showInfoBox(smallScreen=false) {
-  // Runs if current date and time is night-shift time.
-  // Shows the night-shift banner
   div_nobetci.style.display = "block";
   if (smallScreen === true) {
     // Don't use .replace() since there might not be the class to replace
@@ -26,10 +53,12 @@ function showInfoBox(smallScreen=false) {
   }
 }
 
+
+/**
+ * Runs if current date and time is night-shift time.
+ * Pushes everything except the night-shift banner down to make space.
+ */
 function pushBodyDown(smallScreen=false) {
-  // Runs if current date and time is night-shift time.
-  // Pushes everything except the night-shift banner down to make space.
-  
   if (smallScreen)
     div_main.style.marginTop = "3.5em";
   else 
@@ -37,11 +66,15 @@ function pushBodyDown(smallScreen=false) {
     div_main.style.marginTop = "1.2em";
 }
 
+
+/**
+ * Currently not in-use.
+ * Reverts  html.main's 'margin-top' to its default.
+ */
 function pullBodyUp() {
-  // Currently not in-use.
-  // Revert  html.main's 'margin-top' to its default.
   div_main.style["margin-top"] = "1.2px";
 }
+
 
 /*
 Provides helper functions for date objects.
@@ -100,17 +133,21 @@ var dates = {
 */
 
 
-let now;
-let ns_end;
+/**
+ * Detects if current time is night-shift time.
+ * Returns either a boolean value or null.
+ */
 function detectNightShift() {
-  // Detects if now is night-shift time.
-  // Returns either a boolean value or null.
 
   // Read file containing night-shift datetime values.
   var nl = readJsonFile();
   
+  // Value to be returned at the end
   let nstatus;
+
+  // Variable to hold the message to print to console
   let msg;
+
   for (let n_iter=1; n_iter>0 && n_iter<3;){
     // Create night-shift start time as datetime object.
     var d_1 = new Date(nl[nl.length-n_iter].start);
@@ -133,56 +170,44 @@ function detectNightShift() {
   return nstatus;
 }
 
+
+/**
+ * Returns JSON object that is the list (array) of night-shifts
+ */
 function readJsonFile(){
+  // liste is defined in `nobet-listesi.js`
+  // and made available here via imports in html file
   return liste;
 }
 
-// Upon loading of page;
-//   hide night-shift banner,
-//   if now is the shift time,
-//   show it and push the main webpage body down
-window.addEventListener("load",
-  e => {
-    hideInfoBox();
-    if (detectNightShift()){
-      showInfoBox(smallScreen=mql.matches);
-      pushBodyDown(smallScreen=mql.matches);
-    }
-  }
-);
 
-// Detect if shift is continuing
-// Variables checked are not null if and only if it is shift hours when the page is loaded
-// This function is an helper function to redrawBanner()
-// This is to be used to redraw the shift banner upon screen width or orientation changes
-let isShiftContinue = () => {return (now < ns_end);}
+/** 
+ * Detect if shift is continuing
+ * Variables checked are not null if and only if it is shift hours when the page is loaded
+ * This function is an helper function to redrawBanner()
+ * This is to be used to redraw the shift banner upon screen width or orientation changes
+ */
+let isShiftContinue = () => {
+  return (now < ns_end);
+};
 
-// Define night shift banner operations in an arrow function
+/**
+ * Define night shift banner operations in an arrow function
+ */
 let redrawBanner = () => {
     hideInfoBox();
     if (isShiftContinue()){
       showInfoBox(smallScreen=mql.matches);
       pushBodyDown(smallScreen=mql.matches);
     }
-}
+};
 
-// Upon change in screen-width or page-width below or above threshold;
-//   redraw night-shift banner
-//     redraw function checks if the shift is continuing
-mql.onchange = (e) => {
-  if (e.matches) {
-    // console.log("Small screen")
-    redrawBanner()
-  }
-  else {
-    // console.log("Wide screen")
-    redrawBanner()
-  }
-}
 
-// Make shift banner (info box) sticky to top border when scrolled down
-// This operation only necessary when info box is hanging low
-// It would hang low only if window width is small (e.g. mobile device)
+/** 
+ * Make shift banner (info box) sticky to top border when scrolled down
+ * This operation only necessary when info box is hanging low
+ * It would hang low only if window width is small (e.g. mobile device)
+ */
 function updateOnScroll(){
   if (mql.matches && isShiftContinue()){
     let nobetci_rect = div_nobetci.getBoundingClientRect();
@@ -196,5 +221,55 @@ function updateOnScroll(){
     }
   }
 }
+
+
+///////////////////
+// EVENT LISTENERS
+
+/** 
+ * Upon loading of page;
+ * hide night-shift banner,
+ * if now is the shift time,
+ * show it and push the main webpage body down
+ */  
+window.addEventListener("load",
+  e => {
+    hideInfoBox();
+    if (detectNightShift()){
+      showInfoBox(smallScreen=mql.matches);
+      pushBodyDown(smallScreen=mql.matches);
+    }
+  }
+);
+
+
+/**
+ * Upon change in screen-width or page-width below or above threshold;
+ * redraw night-shift banner
+ * redraw function checks if the shift is continuing
+ */
+mql.onchange = (e) => {
+  if (e.matches) {
+    // console.log("Small screen")
+    redrawBanner();
+  }
+  else {
+    // console.log("Wide screen")
+    redrawBanner();
+  }
+};
+
+/**
+ * See updateOnScroll declaration for more info
+ */
 document.addEventListener('scroll', updateOnScroll);
+
+
+///////////////////
+// MAIN FUNCTION
+// Following commands run once this script loads
+
+/**
+ * See updateOnScroll declaration for more info
+ */
 updateOnScroll();
