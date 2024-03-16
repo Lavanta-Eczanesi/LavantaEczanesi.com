@@ -10,13 +10,19 @@
  * Date() object
  */
 // SOON TO BE DEPRECATED
-let now;
+// let now;
 
 /**
  * End of currently-in-night-shift's date-time
  * Date() object
  */
 let ns_end;
+
+/**
+ * Night-shift status. Are we in night-shift or not?
+ * Boolean. Initiate as false.
+ */
+let nstatus = false;
 
 // Select Nobetci Eczane info box
 var div_nobetci = document.getElementById("nobetci");
@@ -141,9 +147,6 @@ function detectNightShift() {
 
   // Read file containing night-shift datetime values.
   var nl = readJsonFile();
-  
-  // Value to be returned at the end
-  let nstatus;
 
   // Variable to hold the message to print to console
   let msg;
@@ -188,7 +191,8 @@ function readJsonFile(){
  * This is to be used to redraw the shift banner upon screen width or orientation changes
  */
 let isShiftContinue = () => {
-  return (now < ns_end);
+  var current_time = new Date();
+  return (current_time < ns_end);
 };
 
 /**
@@ -196,7 +200,7 @@ let isShiftContinue = () => {
  */
 let redrawBanner = () => {
     hideInfoBox();
-    if (isShiftContinue()){
+    if (nstatus && isShiftContinue()){
       showInfoBox(smallScreen=mql.matches);
       pushBodyDown(smallScreen=mql.matches);
     }
