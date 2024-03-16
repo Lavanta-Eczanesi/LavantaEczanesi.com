@@ -140,7 +140,8 @@ var dates = {
 
 
 /**
- * Detects if current time is night-shift time.
+ * Detects either the current time is night-shift time
+ * or a night-shift is incoming.
  * Returns either a boolean value or null.
  */
 function detectNightShift() {
@@ -152,23 +153,24 @@ function detectNightShift() {
   // Variable to hold the message to print to console
   let msg;
 
-  for (let n_iter=1; n_iter>0 && n_iter<3;){
+  for (let n_iter=0; n_iter>=0 && n_iter<3;){
     // Create night-shift start time as datetime object.
-    var d_1 = new Date(nl[nl.length-n_iter].start);
+    var d_1 = new Date(nl[n_iter].start);
     // console.log("Nobet basla: (d_1)", d_1);
 
     // Create night-shift end time as datetime object.
-    var d_2 = new Date(nl[nl.length-n_iter].end);
+    var d_2 = new Date(nl[n_iter].end);
     // console.log("Nobet bitis: (d_2)", d_2);
 
     // Create datetime object for current time.
     var g = new Date();
     // console.log("Now:           (g)", g);
     
-    if      (g>d_2) {msg="Nobet gunu gecti";  nstatus=false; break;}
-    else if (g>d_1) {msg="Nobet ani";         nstatus=true; now=g; ns_end=d_2; break;}
-    else if (d_1>g) {msg="Nobete daha var";   nstatus=false; console.log(msg); n_iter=n_iter+1;}
-    else            {msg="Tarihler sorunlu!"; nstatus=null; break;}
+    if      (g>d_2) {nstatus=false; msg="Listedeki 1 nöbet atlandı. Çünkü nöbet günü geçti"; console.log(msg);}
+    else if (g>d_1) {nstatus=true;  ns_end=d_2; msg="Nobet anı!";                             break;}
+    else if (d_1>g) {nstatus=false; msg="Nöbete daha var.";                                   break;}
+    else            {nstatus=null;  msg="Listedeki 1 nöbetin tarihleri sorunlu!";            console.warn(msg);}
+    n_iter=n_iter+1;
   }
   console.log(msg);
   return nstatus;
