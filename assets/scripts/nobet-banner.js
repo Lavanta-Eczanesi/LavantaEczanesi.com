@@ -6,13 +6,6 @@
  */
 
 /**
- * Current time
- * Date() object
- */
-// SOON TO BE DEPRECATED
-// let now;
-
-/**
  * End of currently-in-night-shift's date-time
  * Date() object
  */
@@ -83,6 +76,8 @@ function pullBodyUp() {
 
 
 /*
+// An alternative not-in-use function to compare dates
+// An alternate to `detectNightShift()`
 Provides helper functions for date objects.
 var dates = {
   // Source: http://stackoverflow.com/questions/497790
@@ -153,7 +148,25 @@ function detectNightShift() {
   // Variable to hold the message to print to console
   let msg;
 
-  for (let n_iter=0; n_iter>=0 && n_iter<3;){
+  /** 
+   * Check length of night-shift list, dictate iteration number of for-loop below
+   * Maximum iteration is set to 3. If list has fewer elements than 3, then 
+   * iteration number will be number of elements.
+   */
+  const n_len = Math.min(3, nl.length-1);
+
+  /**
+   * Check if night-shift list is empty.
+   * Mind that for-loop won't work if the list is empty.
+   * So no extra door-guard for that loop needed.
+   */
+  if (n_len < 1){
+    msg = "Nöbet listesi boş. Nöbet kontrol edilemedi."
+    nstatus = null;
+  }
+
+  // Maximum 3 iterations
+  for (let n_iter=0; n_iter>=0 && n_iter<n_len;){
     // Create night-shift start time as datetime object.
     var d_1 = new Date(nl[n_iter].start);
     // console.log("Nobet basla: (d_1)", d_1);
@@ -183,7 +196,11 @@ function detectNightShift() {
 function readJsonFile(){
   // liste is defined in `nobet-listesi.js`
   // and made available here via imports in html file
-  return liste;
+  try {
+    return liste;
+  } catch (ReferenceError) {
+    return [];
+  }
 }
 
 
