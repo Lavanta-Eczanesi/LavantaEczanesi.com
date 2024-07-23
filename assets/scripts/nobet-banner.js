@@ -1,9 +1,25 @@
 ///////////////////
+// NOBET BANNER EXAMPLE
+//                    ╮
+// Nöbetçi Eczaneyiz! ╵
+//                     } Nobetci Eczane info box (2 lines of text)
+// 🌙🕖 → 🌅🕘        ╷
+//   ╲      ╲         ╯
+//    ╲      ↳ nobet-end section. Displays the time nobet (shift) ends in emoji 
+//     ↳ nobet-start section. Displays the time nobet (shift) starts in emoji 
+
+///////////////////
 // VARIABLES
 /**
  * let mql
  * is defined in `detect-mobile.js`
  */
+
+/**
+ * Start of currently-in-night-shift's date-time
+ * Date() object
+ */
+let ns_start;
 
 /**
  * End of currently-in-night-shift's date-time
@@ -20,8 +36,161 @@ let nstatus = false;
 // Select Nobetci Eczane info box
 var div_nobetci = document.getElementById("nobetci");
 
+// Select nobet-start section in Nobetci Eczane info box
+var span_nobet_start = document.getElementById("nobet-start");
+
+// Select nobet-end section in Nobetci Eczane info box
+var span_nobet_end = document.getElementById("nobet-end");
+
 // Select the main body for top margin
 var div_main = document.getElementById("business-card");
+
+// 🌅☀️🌙🌃
+const time_emojis = {
+  0:
+    {
+      0: "🌙🕛",
+      30: "🌙🕧"
+    },
+
+  1:
+    {
+      0: "🌙🕐",
+      30: "🌙🕜"
+    },
+
+  2:
+    {
+      0: "🌙🕑",
+      30: "🌙🕝"
+    },
+
+  3:
+    {
+      0: "🌙🕒",
+      30: "🌙🕞"
+    },
+
+  4:
+    {
+      0: "🌙🕓",
+      30: "🌙🕟"
+    },
+
+  5:
+    {
+      0: "🌙🕔",
+      30: "🌙🕠"
+    },
+
+  6:
+    {
+      0: "🌅🕕",
+      30: "🌅🕡"
+    },
+
+  7:
+    {
+      0: "🌅🕖",
+      30: "🌅🕢"
+    },
+
+  8:
+    {
+      0: "🌅🕗",
+      30: "🌅🕣"
+    },
+
+  9:
+    {
+      0: "🌅🕘",
+      30: "🌅🕤"
+    },
+
+  10:
+    {
+      0: "☀️🕙",
+      30: "☀️🕥"
+    },
+
+  11:
+    {
+      0: "☀️🕚",
+      30: "☀️🕦"
+    },
+
+  12:
+    {
+      0: "☀️🕛",
+      30: "☀️🕧"
+    },
+
+  13:
+    {
+      0: "☀️🕐",
+      30: "☀️🕜"
+    },
+
+  14:
+    {
+      0: "☀️🕑",
+      30: "☀️🕝"
+    },
+
+  15:
+    {
+      0: "☀️🕒",
+      30: "☀️🕞"
+    },
+
+  16:
+    {
+      0: "☀️🕓",
+      30: "☀️🕟"
+    },
+
+  17:
+    {
+      0: "☀️🕔",
+      30: "☀️🕠"
+    },
+
+  18:
+    {
+      0: "🌃🕕",
+      30: "🌃🕡"
+    },
+
+  19:
+    {
+      0: "🌃🕖",
+      30: "🌃🕢"
+    },
+
+  20:
+    {
+      0: "🌃🕗",
+      30: "🌃🕣"
+    },
+
+  21:
+    {
+      0: "🌃🕘",
+      30: "🌃🕤"
+    },
+
+  22:
+    {
+      0: "🌙🕙",
+      30: "🌙🕥"
+    },
+
+  23:
+    {
+      0: "🌙🕚",
+      30: "🌙🕦"
+    }
+};
 
 ///////////////////
 // FUNCTIONS
@@ -52,6 +221,50 @@ function showInfoBox(smallScreen=false) {
   }
 }
 
+
+/**
+ * Clear time of shift start and end in nobet banner
+ */
+function emptyInfoBoxTimes() {
+  span_nobet_start.innerText = "";
+  span_nobet_end.innerText = "";
+}
+
+
+/**
+ * Writes time of shift start and end in nobet banner
+ */
+function fillInfoBoxTimes() {
+  /**
+   * Round Hour and Time to 30 minutes segments.
+   * 08:00 -> 08:00
+   * 08:01 -> 08:00
+   * 08:14 -> 08:00
+   * 08:15 -> 08:30
+   * 12:25 -> 12:30
+   * 12:30 -> 12:30
+   * 12:44 -> 12:30
+   * 12:45 -> 13:00
+   * 23:55 -> 00:00
+   */
+  let roundTime = (h, m) => {
+    let m__ = Math.round(m/30)*30;
+    if (m__ === 60) {
+      h = (h+1)%24;
+      m__ = 0;
+    }
+    return [h, m__];
+  };
+  // hs: hours start (of shift)
+  // ms: minutes start (of shift)
+  let [hs, ms] = roundTime(ns_start.getHours(), ns_start.getMinutes());
+  span_nobet_start.innerText = time_emojis[hs][ms];
+
+  // he: hours end (of shift)
+  // me: minutes end (of shift)
+  let [he, me] = roundTime(ns_end.getHours(), ns_end.getMinutes());
+  span_nobet_end.innerText = time_emojis[he][me];
+}
 
 /**
  * Runs if current date and time is night-shift time.
@@ -180,8 +393,8 @@ function detectNightShift() {
     // console.log("Now:           (g)", g);
     
     if      (g>d_2) {nstatus=false; msg="Listedeki 1 nöbet atlandı. Çünkü nöbet günü geçti"; console.log(msg);}
-    else if (g>d_1) {nstatus=true;  ns_end=d_2; msg="Nobet anı!";                             break;}
-    else if (d_1>g) {nstatus=false; msg="Nöbete daha var.";                                   break;}
+    else if (g>d_1) {nstatus=true;  ns_start=d_1; ns_end=d_2; msg="Nobet anı!";                         break;}
+    else if (d_1>g) {nstatus=false; msg="Nöbete daha var.";                                             break;}
     else            {nstatus=null;  msg="Listedeki 1 nöbetin tarihleri sorunlu!";            console.warn(msg);}
     n_iter=n_iter+1;
   }
@@ -215,12 +428,16 @@ let isShiftContinue = () => {
   return (current_time < ns_end);
 };
 
+
 /**
- * Define night shift banner operations in an arrow function
+ * If screen width or screen oriendtation warrants a need to redraw shift banner
+ * do it using this arrow function
  */
 let redrawBanner = () => {
     hideInfoBox();
+    emptyInfoBoxTimes();
     if (nstatus && isShiftContinue()){
+      fillInfoBoxTimes();
       showInfoBox(smallScreen=mql.matches);
       pushBodyDown(smallScreen=mql.matches);
     }
@@ -260,6 +477,7 @@ window.addEventListener("load",
   e => {
     hideInfoBox();
     if (detectNightShift()){
+      fillInfoBoxTimes();
       showInfoBox(smallScreen=mql.matches);
       pushBodyDown(smallScreen=mql.matches);
     }
