@@ -45,6 +45,9 @@ var span_nobet_end = document.getElementById("nobet-end");
 // Select the main body for top margin
 var div_main = document.getElementById("business-card");
 
+// How many item will be picked from array in `nobet-listesi.js`
+const LIST_ITEM_NUMBER = 5;
+
 // 🌅☀️🌙🌃
 const time_emojis = {
   0:
@@ -363,10 +366,10 @@ function detectNightShift() {
 
   /** 
    * Check length of night-shift list, dictate iteration number of for-loop below
-   * Maximum iteration is set to 3. If list has fewer elements than 3, then 
-   * iteration number will be number of elements.
+   * Maximum iteration is set to 5 (LIST_ITEM_NUMBER). If list has fewer
+   * elements than that, then iteration number will be number of elements.
    */
-  const n_len = Math.min(3, nl.length-1);
+  const n_len = Math.min(LIST_ITEM_NUMBER, nl.length-1);
 
   /**
    * Check if night-shift list is empty.
@@ -378,7 +381,7 @@ function detectNightShift() {
     nstatus = null;
   }
 
-  // Maximum 3 iterations
+  // Maximum 5 iterations (LIST_ITEM_NUMBER)
   for (let n_iter=0; n_iter>=0 && n_iter<n_len;){
     // Create night-shift start time as datetime object.
     var d_1 = new Date(nl[n_iter].start);
