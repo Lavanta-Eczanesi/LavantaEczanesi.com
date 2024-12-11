@@ -369,14 +369,14 @@ function detectNightShift() {
    * Maximum iteration is set to 5 (LIST_ITEM_NUMBER). If list has fewer
    * elements than that, then iteration number will be number of elements.
    */
-  const n_len = Math.min(LIST_ITEM_NUMBER, nl.length-1);
+  const n_len = Math.min(LIST_ITEM_NUMBER, nl.length);
 
   /**
    * Check if night-shift list is empty.
    * Mind that for-loop won't work if the list is empty.
    * So no extra door-guard for that loop needed.
    */
-  if (n_len < 1){
+  if (n_len == 0){
     msg = "Nöbet listesi boş. Nöbet kontrol edilemedi."
     nstatus = null;
   }
