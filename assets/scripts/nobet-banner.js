@@ -49,7 +49,7 @@ var div_main = document.getElementById("business-card");
 const LIST_ITEM_NUMBER = 5;
 
 // 🌅☀️🌙🌃
-const time_emojis = {
+const TIME_EMOJIS = {
   0:
     {
       0: "🌙🕛",
@@ -261,12 +261,12 @@ function fillInfoBoxTimes() {
   // hs: hours start (of shift)
   // ms: minutes start (of shift)
   let [hs, ms] = roundTime(ns_start.getHours(), ns_start.getMinutes());
-  span_nobet_start.innerText = time_emojis[hs][ms];
+  span_nobet_start.innerText = TIME_EMOJIS[hs][ms];
 
   // he: hours end (of shift)
   // me: minutes end (of shift)
   let [he, me] = roundTime(ns_end.getHours(), ns_end.getMinutes());
-  span_nobet_end.innerText = time_emojis[he][me];
+  span_nobet_end.innerText = TIME_EMOJIS[he][me];
 }
 
 /**
