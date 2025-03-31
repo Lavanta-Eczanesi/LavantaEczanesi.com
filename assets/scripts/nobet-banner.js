@@ -364,6 +364,9 @@ function detectNightShift() {
   // Variable to hold the message to print to console
   let msg;
 
+  // Variable to use to select either console.log() or console.warn()
+  let is_warning = false;
+
   /** 
    * Check length of night-shift list, dictate iteration number of for-loop below
    * Maximum iteration is set to 5 (LIST_ITEM_NUMBER). If list has fewer
@@ -377,7 +380,8 @@ function detectNightShift() {
    * So no extra door-guard for that loop needed.
    */
   if (n_len == 0){
-    msg = "Nöbet listesi boş. Nöbet kontrol edilemedi."
+    msg = "Nöbet listesi boş. Nöbet kontrol edilemedi.";
+    is_warning = true;
     nstatus = null;
   }
 
@@ -399,10 +403,27 @@ function detectNightShift() {
     else if (g>d_1) {nstatus=true;  ns_start=d_1; ns_end=d_2; msg="Nobet anı!";                         break;}
     else if (d_1>g) {nstatus=false; msg="Nöbete daha var.";                                             break;}
     else            {nstatus=null;  msg="Listedeki 1 nöbetin tarihleri sorunlu!";            console.warn(msg);}
+    printNobetMsg(msg, is_warning); msg=""; is_warning=false; 
     n_iter=n_iter+1;
   }
-  console.log(msg);
+  printNobetMsg(msg, is_warning);
   return nstatus;
+}
+
+
+/**
+  * This small function is needed to not repeat if-else conditional checks
+  * two times in `detectNightShift()`.
+  * These if-else checks are introduced within the introduction of `is_warning` variable
+  */
+function printNobetMsg(msg, is_warning) {
+  if (typeof(msg) === "string" && msg) {
+    if (is_warning) {
+      console.warn(msg);
+    } else {
+      console.log(msg);
+    }
+  } 
 }
 
 
