@@ -399,10 +399,12 @@ function detectNightShift() {
     var g = new Date();
     // console.log("Now:           (g)", g);
     
-    if      (g>d_2) {nstatus=false; msg="Listedeki 1 nöbet atlandı. Çünkü nöbet günü geçti"; console.log(msg);}
-    else if (g>d_1) {nstatus=true;  ns_start=d_1; ns_end=d_2; msg="Nobet anı!";                         break;}
-    else if (d_1>g) {nstatus=false; msg="Nöbete daha var.";                                             break;}
-    else            {nstatus=null;  msg="Listedeki 1 nöbetin tarihleri sorunlu!";            console.warn(msg);}
+    if (isNaN(d_1))      { nstatus=null;  msg="Listedeki 1 nöbetin başlangıç tarihi sorunlu!"; is_warning=true; }
+    else if (isNaN(d_2)) { nstatus=null;  msg="Listedeki 1 nöbetin bitiş tarihi sorunlu!"; is_warning=true;     }
+    else if (g>d_2)      { nstatus=false; msg="Listedeki 1 nöbet atlandı. Çünkü nöbet günü geçti";              }
+    else if (g>d_1)      { nstatus=true;  msg="Nobet anı!"; ns_start=d_1; ns_end=d_2;                    break; }
+    else if (d_1>g)      { nstatus=false; msg="Nöbete daha var.";                                        break; }
+    else                 { nstatus=null;  msg="Listedeki 1 nöbetin tarihleri sorunlu!"; is_warning=true;        }
     printNobetMsg(msg, is_warning); msg=""; is_warning=false; 
     n_iter=n_iter+1;
   }
