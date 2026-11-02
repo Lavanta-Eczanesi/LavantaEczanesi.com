@@ -255,6 +255,11 @@ nav a.in-use button {
   color: #1D1D1F;
 }
 
+nav a button:disabled {
+  cursor: not-allowed !important;
+  text-decoration: line-through;
+}
+
 hr{
   margin-bottom: 0;
 }
