@@ -8,6 +8,8 @@
   --color-mavi: rgb(0, 157, 220);
   --color-turuncu: rgb(242, 100, 48);
   --color-yesil: rgb(0, 155, 114);
+  --font-eczane: "Bodoni 72", "Prata", serif;
+  --font-rest: "Helvetica Neue","Helvetica","Arial",sans-serif;
 }
 
 html {
@@ -262,4 +264,19 @@ nav a button:disabled {
 
 hr{
   margin-bottom: 0;
+}
+
+.announcement-banner {
+  background-color: var(--color-lavanta);
+  color: #fff;
+  font-family: var(--font-rest);
+  font-weight: 200;
+  padding-top: 0.1rem ;
+  padding-bottom: 0.1rem ;
+  justify-content: center;
+  text-align: center;
+}
+
+.name-eczane{
+  font-family: var(--font-eczane);
 }
